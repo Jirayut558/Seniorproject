@@ -1,0 +1,51 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BeautifulSoup	../deepcut_test.py	/^from bs4 import BeautifulSoup$/;"	kind:namespace	line:2
+LineSentence	../train_word2vec_model.py	/^from gensim.models.word2vec import LineSentence$/;"	kind:namespace	line:8
+WikiCorpus	../process_wiki.py	/^from gensim.corpora import WikiCorpus$/;"	kind:namespace	line:4
+WikiCorpus	../train_word2vec_model.py	/^from gensim.corpora import WikiCorpus$/;"	kind:namespace	line:6
+Word2Vec	../train_word2vec_model.py	/^from gensim.models import Word2Vec$/;"	kind:namespace	line:7
+Word2Vec	../word2vec_test.py	/^from gensim.models import Word2Vec$/;"	kind:namespace	line:1
+a	../word2vec_test.py	/^a = ['ฉันรักภาษาไทยเพราะฉันเป็นคนไทยและฉันเป็นคนไทย' ,'ฉันเป็นนักเรียนที่ชื่นชอบวิทยาศาสตร์และเทคโนโลยี' ,'ฉันไม่ใช่โปรแกรมเมอร์เพราะฉันทำมากกว่าคิดเขียนพัฒนาโปรแกรมทดสอบโปรแกรม','ฉันชื่นชอบวิทยาศาสตร์ชอบค้นคว้าตั้งสมมุติฐานและหาคำตอบ']$/;"	kind:variable	line:3
+aa	../word2vec_test.py	/^aa=model.similar_by_word('เป็น')$/;"	kind:variable	line:6
+b	../word2vec_test.py	/^b = [list(segment(i)) for i in a] # ทำการตัดคำแล้วเก็บใน list จะได้เป็น [['ฉัน',...],['ฉัน',...]...]$/;"	kind:variable	line:4
+deep_word	../deepcut_test.py	/^def deep_word(url,path):$/;"	kind:function	line:19
+deepcut	../deepcut_test.py	/^import deepcut$/;"	kind:namespace	line:1
+deepcut_test.py	../deepcut_test.py	1;"	kind:file	line:1
+get_news	../deepcut_test.py	/^def get_news(url_text):$/;"	kind:function	line:8
+i	../process_wiki.py	/^    i = 0$/;"	kind:variable	line:20
+list1	../process_wiki.py	/^        list1=space.join(text)$/;"	kind:variable	line:25
+logger	../process_wiki.py	/^    logger = logging.getLogger(program)$/;"	kind:variable	line:8
+logger	../train_word2vec_model.py	/^    logger = logging.getLogger(program)$/;"	kind:variable	line:12
+logging	../process_wiki.py	/^import logging$/;"	kind:namespace	line:1
+logging	../train_word2vec_model.py	/^import logging$/;"	kind:namespace	line:2
+main	../deepcut_test.py	/^def main():   $/;"	kind:function	line:27
+model	../train_word2vec_model.py	/^    model = Word2Vec(LineSentence(inp), size=400, window=5, min_count=5,$/;"	kind:variable	line:24
+model	../word2vec_test.py	/^model = Word2Vec(b, min_count=1)$/;"	kind:variable	line:5
+multiprocessing	../train_word2vec_model.py	/^import multiprocessing$/;"	kind:namespace	line:5
+os	../process_wiki.py	/^import os.path$/;"	kind:namespace	line:2
+os	../train_word2vec_model.py	/^import os.path$/;"	kind:namespace	line:3
+output	../process_wiki.py	/^    output = open(outp, 'w')$/;"	kind:variable	line:22
+path	../process_wiki.py	/^import os.path$/;"	kind:namespace	line:2
+path	../train_word2vec_model.py	/^import os.path$/;"	kind:namespace	line:3
+path_file	../deepcut_test.py	/^path_file = "\/Users\/jk\/Projects\/SeniorProject\/Deepcut\/inputtext\/"$/;"	kind:variable	line:7
+process_wiki.py	../process_wiki.py	1;"	kind:file	line:1
+program	../process_wiki.py	/^    program = os.path.basename(sys.argv[0])$/;"	kind:variable	line:7
+program	../train_word2vec_model.py	/^    program = os.path.basename(sys.argv[0])$/;"	kind:variable	line:11
+request	../deepcut_test.py	/^import urllib.request$/;"	kind:namespace	line:3
+segment	../word2vec_test.py	/^from pythainlp.segment.dict import segment$/;"	kind:namespace	line:2
+space	../process_wiki.py	/^    space = ' '$/;"	kind:variable	line:19
+string	../deepcut_test.py	/^import string$/;"	kind:namespace	line:4
+sys	../process_wiki.py	/^import sys$/;"	kind:namespace	line:3
+sys	../train_word2vec_model.py	/^import sys$/;"	kind:namespace	line:4
+train_word2vec_model.py	../train_word2vec_model.py	1;"	kind:file	line:1
+url_news	../deepcut_test.py	/^url_news = "https:\/\/www.dailynews.co.th\/economic\/59098"$/;"	kind:variable	line:6
+urllib	../deepcut_test.py	/^import urllib.request$/;"	kind:namespace	line:3
+wiki	../process_wiki.py	/^    wiki = WikiCorpus(inp, lemmatize=False, dictionary={})$/;"	kind:variable	line:23
+word2vec_test.py	../word2vec_test.py	1;"	kind:file	line:1
+workers	../train_word2vec_model.py	/^            workers=multiprocessing.cpu_count())$/;"	kind:variable	line:25
+write_file	../deepcut_test.py	/^def write_file(listword,path):$/;"	kind:function	line:23
