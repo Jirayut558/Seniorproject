@@ -9,9 +9,12 @@ import re
 import deepcut
 from gensim.corpora import WikiCorpus
 
-tmp_path = "/Users/jirayutk./Project/SeniorProject/word2vec/tmp.text"
+tmp_path = "/Users/jirayutk./Project/projectfile/word2vec/tmp.text"
+news_path= "/Users/jirayutk./Project/projectfile/newsfile/dailynews/news_economics.txt"
+output_path = "/Users/jirayutk./Project/projectfile/word2vec/economic.th.text"
 
 def read_news_fromfile(path_file):
+    global tmp_path
     input_file = open(path_file,'r')
     output_file = open(tmp_path,'w')
     text = ''
@@ -21,15 +24,16 @@ def read_news_fromfile(path_file):
             data = json.loads(line)
             count += 1
             body = data['body']
+            text = text + re.sub(r"\s+", "", body).replace(" ", "") + "\n"
         except Exception as e:
             continue
-        text = text + re.sub(r"\s+", "", body).replace(" ","") +"\n"
     output_file.write(text)
     output_file.close()
     input_file.close()
 
-def preprocess(path_news):
-    read_news_fromfile(path_news)
+def preprocess():
+    global news_path,output_path,tmp_path
+    read_news_fromfile(news_path)
 
     program = os.path.basename(sys.argv[0])
     logger = logging.getLogger(program)
@@ -39,28 +43,24 @@ def preprocess(path_news):
     logger.info("running %s" % ' '.join(sys.argv))
 
     # check and process input arguments
-    if len(sys.argv) < 3:
-        print((globals()['__doc__'] % locals()))
-        sys.exit(1)
-    inp, outp = sys.argv[1:3]
+    inp = tmp_path
+    outp = output_path
     space = ' '
     i = 0
-
-    input = open(inp,'r')
+    inputfile = open(inp,'r')
     output = open(outp, 'w')
 
-    for line in input.readlines():
+    for line in inputfile.readlines():
         text = deepcut.tokenize(line)
         list1 = space.join(text)
         output.write((list1))
         i += 1
-        if (i % 100 == 0):
+        if (i % 100 == 0) or (i <= 10 ):
             logger.info("Saved " + str(i) + " articles")
     output.close()
     logger.info("Finished Saved " + str(i) + " articles")
 def main():
-    path = "/Users/jirayutk./Project/SeniorProject/Deepcut/newsfile/dailynews/news_economics.txt"
-    preprocess(path)
+    preprocess()
 
 if __name__ == '__main__':
     main()
