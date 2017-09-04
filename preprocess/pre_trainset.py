@@ -3,23 +3,8 @@ import json
 import csv
 import re
 import codecs
-
-#input pathfile
-#output type,subtitle,title,body
-def getnews(pathfile):
-    file = open(pathfile, 'r')
-    i = 0
-    for line in file.readlines():
-        try:
-            if(i==0):
-                data = json.loads(line)
-                i+=1
-                if "dailynews" in pathfile:
-                    return data['title']+data['subtitle'],data['body']
-                else:
-                    return data['title'],data['body']
-        except Exception as e:
-            continue
+import operator
+import functools
 
 
 #input : word,title,body
@@ -40,7 +25,6 @@ input : newsfile.txt , start new seq , stop news seq
 output : predata_x.csv * 10000 row/file
         tmp_csv 
 '''
-
 def pre_trainset(pathfile,start,stop):
     tmp_output = '/Users/jirayutk./Project/projectfile/pretrainset/'
     output_file = "predata_.csv"
@@ -49,7 +33,7 @@ def pre_trainset(pathfile,start,stop):
 
     file = open(pathfile, 'r')
 
-    i = 0
+    i = 1
     j = start
     k = stop
     index = 0
@@ -58,8 +42,8 @@ def pre_trainset(pathfile,start,stop):
     writer = csv.DictWriter(csvfile, fieldnames=header)
     writer.writeheader()
     for line in file.readlines():
-        if j%10 == 0:
-            print (str(j))
+        if index%10 == 0:
+            print (str(index+1))
 
         if (index+1) < j and (index+1) >k:
             break
@@ -67,9 +51,10 @@ def pre_trainset(pathfile,start,stop):
             data = json.loads(line)
             if "dailynews" in pathfile:
                 title,body = data['title'] + data['subtitle'], data['body']
-                list_word = feature_option.wordcut(re.sub(r"\s+", "", body).replace(" ", ""))
+                list_title,list_body = feature_option.article_cut(title,body)
+                list_word = functools.reduce(operator.concat, list_body)
                 for word in list_word:
-                    list_data = get_feature_perword(word,title,body)
+                    list_data = get_feature_perword(word,list_title,list_body)
                     writer.writerow({header[0]:list_data[0], header[1]:list_data[1], header[2]:list_data[2], header[3]:list_data[3], header[4]:list_data[4],})
             else:
                 title,body = data['title'], data['body']
@@ -77,4 +62,4 @@ def pre_trainset(pathfile,start,stop):
             print (e)
             continue
 if __name__ == '__main__':
-    pre_trainset("/Users/jirayutk./Project/projectfile/newsfile/dailynews/news_agriculture.txt",1,20)
+    pre_trainset("/Users/jirayutk./Project/projectfile/newsfile/dailynews/news_agriculture.txt",1,100)

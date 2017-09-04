@@ -1,7 +1,21 @@
 import deepcut
 import json
 import re
-
+import operator
+import functools
+'''
+input : title , body
+output : list(title) , list(body)
+'''
+def article_cut(title,body):
+    list_body = str(body).splitlines()
+    list_paragraph = []
+    for line in list_body:
+        if " " in line:
+            despace = re.sub(r"\s+", "", line).replace(" ", "")
+            list_paragraph.append(wordcut(despace))
+    list_title = wordcut(re.sub(r"\s+", "", title).replace(" ", ""))
+    return list_title,list_paragraph
 
 #input : article
 #output : list of word
@@ -11,33 +25,25 @@ def wordcut(article):
 
 #input : title(cut),word(cut)
 #output : 1 pass, 0 fail
-def lable_intitle(word,title):
+def lable_intitle(word,list_title):
     try:
-        title.index(word)
+        list_title.index(word)
         return True
     except:
         return False
 
-#input : word , body
+#input : word , body(list)
 #output : sequence of paragraph 0 - 1 (seq/total seq)
-def seq_paragraph(word,body):
-    list_body = str(body).splitlines()
-    list_paragraph = []
-
-    for line in list_body:
-        if " " in line:
-            despace = re.sub(r"\s+", "", line).replace(" ", "")
-            list_paragraph.append(wordcut(despace))
-
+def seq_paragraph(word,list_body):
     #--- check word in paragraph ---#
-    for i,text in enumerate(list_paragraph):
+    for i,text in enumerate(list_body):
         try:
             text.index(word)
             seqnum = i+1
             break
         except:
             seqnum = 0
-    return (seqnum/len(list_paragraph))
+    return (seqnum/len(list_body))
 
 #input : word
 #output : 1 = is num , 0 = not number
@@ -49,26 +55,10 @@ def number_check(word):
 
 #input : word , body
 #output : number of word in body
-def word_counting(word,body):
-    list_word = wordcut(re.sub(r"\s+", "", body).replace(" ", ""))
-    wordseq = list_word.count(word)
-    return wordseq
+def word_counting(word,list_body):
+    list = functools.reduce(operator.concat, list_body)
+    word_count = list.count(word)
+    return word_count
 
-
-def getnews():
-    pathfile = "/Users/jirayutk./Project/projectfile/newsfile/dailynews/news_education.txt"
-    file = open(pathfile, 'r')
-    i = 0
-    for line in file.readlines():
-        try:
-            if(i==0):
-                data = json.loads(line)
-                i+=1
-                return data['body']
-        except Exception as e:
-            continue
-
-
-if __name__ == '__main__':
-    #print (lable_intitle("สวัสดี",wordcut("วันนี้วันจันทร์สวัสดีนะครับ")))
-    print (word_counting("นิว",getnews()))
+#if __name__ == '__main__':
+    #word_counting("new",[[3,3],[4,5]])
