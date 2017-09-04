@@ -2,11 +2,13 @@
 import urllib.request
 import json
 from bs4 import BeautifulSoup
+import os
 
-url_dailynews = "https://www.dailynews.co.th/sports?page="
-url_kaosod = "https://www.khaosod.co.th/sports/page/"
-path_file = "/Users/jirayutk./Project/SeniorProject/Deepcut/newsfile/"
+url_dailynews = "https://www.dailynews.co.th/economic?page="
+url_kaosod = "https://www.khaosod.co.th/around-thailand/page/"
+path_file = "/Users/jirayutk./Project/projectfile/newsfile/"
 
+url_matichon = "https://www.matichon.co.th/category/politics/page/"
 
 # ------------------------------------------------DailyNews-------------------------------------------
 def get_dailynews_url(url_page):
@@ -51,7 +53,7 @@ def get_news(url_text):
     tmp = soup.find("span", class_=('date')).get_text().strip()
     subtitle = str(subtitle).replace(tmp,"")
     if isNews:
-        if("กีฬา" in type):
+        if("เศรษฐกิจ-นวัตกรรมขนส่ง" in type):
             add_json(type,title,subtitle,body)
         else:
             print(type)
@@ -60,12 +62,12 @@ def add_json(type,title,subtitle,body):
     data = {"type": str(type).strip(), "title": str(title).strip(), "subtitle": str(subtitle).strip(),
             "body": str(body).strip()}
     json_data = json.dumps(data)
-    file = open(path_file+"dailynews/news_sports.txt",'a')
+    file = open(path_file+"dailynews/news_education.txt",'a')
     file.writelines(json_data+"\n")
     file.close()
 
 def load_dailynews_tofile():
-    for i in range(301,400):
+    for i in range(601,650):
         print(str(i))
         get_dailynews_url(url_dailynews+str(i))
 
@@ -99,22 +101,40 @@ def get_kaosod_news(url_link):
         title = x.get_text()
     for x in soup.find_all("p"):
         body = body+x.get_text()
-    if "กีฬา" in type:
+    write_file_kaosod(type, title, body)
+    '''if "การเมือง" in type:
         #print(type,title,body)
-        write_file_kaosod(type,title,body)
+        #write_file_kaosod(type,title,body)
     else:
-        print(type)
+        print(type)'''
 def write_file_kaosod(type,title,body):
     data = {"type": str(type).strip(), "title": str(title).strip(),"body": str(body).strip()}
     json_data = json.dumps(data)
-    file = open(path_file + "kaosod/news_sports.txt", 'a')
+    file = open(path_file + "matichon/news_politics.txt", 'a')
     file.writelines(json_data + "\n")
     file.close()
 def load_kaosod():
-    for i in range(215,327):
+    for i in range(261,464):
         print (str(i))
         get_kaosod_url(url_kaosod+str(i))
  #------------------------------------------------Kaosod-------------------------------------------
+
+#------------------------------------------------matichon----------------------------------------
+def get_urls_matichon(url_page):
+    response = urllib.request.urlopen(url_page)
+    html = response.read()
+    soup = BeautifulSoup(html, "html.parser")
+    for tag in soup.find_all("h3",class_=('entry-title td-module-title')):
+        link = tag.a.get('href')
+        print(link)
+        get_kaosod_news(link)
+def load_matichon():
+    for i in range(12,100):
+        print (str(i))
+        get_urls_matichon(url_matichon+str(i))
+#------------------------------------------------matichon----------------------------------------
+
+
 
 #--------------------------------------------Read News file -----------------------------------
 def read_news(path_file):
@@ -123,13 +143,20 @@ def read_news(path_file):
         data = json.loads(line)
         print(data)
 
+def sum_news(folderpath):
+    listfile = os.listdir(folderpath)
+    for file in listfile:
+        if "news" in file:
+            print(file)
+            num_lines = sum(1 for line in open(folderpath+"/"+file))
+            print(num_lines)
 
 def main():
     try:
-        #get_dailynews_url("https://www.dailynews.co.th/politics?page=1")
         #load_kaosod()
-        load_dailynews_tofile()
-        #read_news("/Users/jirayutk./Project/SeniorProject/Deepcut/newsfile/dailynews/news_crime.dat")
+        load_matichon()
+        #load_dailynews_tofile()
+        #sum_news("/Users/jirayutk./Project/projectfile/newsfile/matichon")
     except Exception as e:
         print(e)
 if __name__ == '__main__':
