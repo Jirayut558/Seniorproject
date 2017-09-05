@@ -61,5 +61,6 @@ def pre_trainset(pathfile,start,stop):
         except Exception as e:
             print (e)
             continue
+        index+=1
 if __name__ == '__main__':
     pre_trainset("/Users/jirayutk./Project/projectfile/newsfile/dailynews/news_agriculture.txt",1,100)

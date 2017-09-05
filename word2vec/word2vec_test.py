@@ -9,5 +9,5 @@ print(aa)
 '''
 
 import gensim
-model = gensim.models.Word2Vec.load("/Users/jirayutk./Project/SeniorProject/word2vec/economic.th.text.model")
-print(model.most_similar("เงิน"))
+model = gensim.models.Word2Vec.load("/Users/jirayutk./Project/projectfile/word2vec/economic.th.text.model")
+print(model.wv['เงิน'])
