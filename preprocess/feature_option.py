@@ -1,8 +1,14 @@
+# -*- coding: utf-8 -*-
+import codecs
 import deepcut
 import json
 import re
 import operator
 import functools
+import csv
+from pythainlp.tag import pos_tag
+from pythainlp.tokenize import sent_tokenize
+from PyDictionary import PyDictionary
 '''
 input : title , body
 output : list(title) , list(body)
@@ -22,6 +28,13 @@ def article_cut(title,body):
 def wordcut(article):
     list_word = deepcut.tokenize(article)
     return list_word
+'''
+phrase cut
+input : article
+output : list of phrase
+'''
+def phrasecut(article):
+    return (sent_tokenize(article, engine='whitespace'))
 
 #input : title(cut),word(cut)
 #output : 1 pass, 0 fail
@@ -43,7 +56,8 @@ def seq_paragraph(word,list_body):
             break
         except:
             seqnum = 0
-    return (seqnum/len(list_body))
+    n = len(list_body)
+    return (n-seqnum+1/n)
 
 #input : word
 #output : 1 = is num , 0 = not number
@@ -58,7 +72,34 @@ def number_check(word):
 def word_counting(word,list_body):
     list = functools.reduce(operator.concat, list_body)
     word_count = list.count(word)
-    return word_count
+    return word_count/len(list)
 
-#if __name__ == '__main__':
-    #word_counting("new",[[3,3],[4,5]])
+#input : word
+#output : 1 = isDate 0 = notDate
+def date_check(word):
+    date =[]
+    with open("checklist.csv", encoding='utf-8-sig') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['day'] != '':
+                date.append(row['day'])
+            if row['month'] != '':
+                date.append(row['month'])
+    try:
+        date.index(word)
+        return True
+    except:
+        return False
+
+#input : word
+#output : POS
+def pos_word(word):
+    pos = pos_tag(word, engine='old')
+    return pos[0][1]
+if __name__ == '__main__':
+    filein = codecs.open("input_article.txt","r",encoding='utf8')
+    fileout = codecs.open("output_article.txt","a",encoding='utf8')
+    input = filein.read()
+
+    fileout.writelines("Word cut\n"+str(wordcut(input))+"\n\nPhrase cut\n"+str(phrasecut(input)))
+

@@ -10,4 +10,4 @@ print(aa)
 
 import gensim
 model = gensim.models.Word2Vec.load("/Users/jirayutk./Project/projectfile/word2vec/economic.th.text.model")
-print(model.wv['เงิน'])
+print(model.wv['เงิน','สัตว์'])

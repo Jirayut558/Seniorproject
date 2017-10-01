@@ -17,7 +17,10 @@ def get_feature_perword(word,title,body):
     seqofprg = feature_option.seq_paragraph(word,body)
     countofw = feature_option.word_counting(word,body)
     isnum = feature_option.number_check(word)
-    out_list = [word,lable,seqofprg,countofw,isnum]
+    isdate = feature_option.date_check(word)
+    pos = feature_option.pos_word(word)
+    out_list = [word,lable,pos,seqofprg,countofw,int(isnum),int(isdate)]
+
     return out_list
 
 '''
@@ -29,7 +32,7 @@ def pre_trainset(pathfile,start,stop):
     tmp_output = '/Users/jirayutk./Project/projectfile/pretrainset/'
     output_file = "predata_.csv"
 
-    header = ['word' , 'lable' , 'seqofprg' , 'count' , 'isnum']
+    header = ['word' , 'lable' , 'pos' , 'seqofprg' , 'count', 'isnum' ,'isdate']
 
     file = open(pathfile, 'r')
 
@@ -38,14 +41,15 @@ def pre_trainset(pathfile,start,stop):
     k = stop
     index = 0
 
-    csvfile = codecs.open(tmp_output + 'tmp_' + str(i) + '.csv', 'a','utf-8')
+    csvfile = codecs.open(tmp_output + 'predata_' + str(i) + '.csv', 'w','utf-8')
     writer = csv.DictWriter(csvfile, fieldnames=header)
     writer.writeheader()
     for line in file.readlines():
         if index%10 == 0:
             print (str(index+1))
 
-        if (index+1) < j and (index+1) >k:
+        if (index+1) < j or (index+1) >k:
+            index+=1
             break
         try:
             data = json.loads(line)
@@ -53,14 +57,20 @@ def pre_trainset(pathfile,start,stop):
                 title,body = data['title'] + data['subtitle'], data['body']
                 list_title,list_body = feature_option.article_cut(title,body)
                 list_word = functools.reduce(operator.concat, list_body)
+                add_word =[]
                 for word in list_word:
-                    list_data = get_feature_perword(word,list_title,list_body)
-                    writer.writerow({header[0]:list_data[0], header[1]:list_data[1], header[2]:list_data[2], header[3]:list_data[3], header[4]:list_data[4],})
+                    try:
+                        add_word.index(word)
+                    except:
+                        list_data = get_feature_perword(word,list_title,list_body)
+                        add_word.append(word)
+                        writer.writerow({header[0]:list_data[0], header[1]:list_data[1], header[2]:list_data[2], header[3]:list_data[3], header[4]:list_data[4],
+                                         header[5]: list_data[5],header[6]: list_data[6]})
             else:
                 title,body = data['title'], data['body']
+            index+=1
         except Exception as e:
             print (e)
             continue
-        index+=1
 if __name__ == '__main__':
-    pre_trainset("/Users/jirayutk./Project/projectfile/newsfile/dailynews/news_agriculture.txt",1,100)
+    pre_trainset("/Users/jirayutk./Project/projectfile/newsfile/dailynews/news_economics.txt",1,6500)

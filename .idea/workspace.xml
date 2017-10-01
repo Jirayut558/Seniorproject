@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="191fa5fa-a25c-4f31-b368-0fb783619af7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Deepcut/deepcut_test.py" afterPath="$PROJECT_DIR$/Deepcut/deepcut_test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Deepcut/get_news.py" afterPath="$PROJECT_DIR$/Deepcut/get_news.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/word2vec/train_word2vec_model.py" afterPath="$PROJECT_DIR$/word2vec/train_word2vec_model.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/preprocess/feature_option.py" afterPath="$PROJECT_DIR$/preprocess/feature_option.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/preprocess/pre_trainset.py" afterPath="$PROJECT_DIR$/preprocess/pre_trainset.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/word2vec/word2vec_test.py" afterPath="$PROJECT_DIR$/word2vec/word2vec_test.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,7 +31,7 @@
       <file leaf-file-name="process_wiki.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/word2vec/process_wiki.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
+            <state relative-caret-position="690">
               <caret line="53" column="18" lean-forward="false" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
               <folding>
                 <element signature="e#98#109#0" expanded="true" />
@@ -50,7 +53,7 @@
       <file leaf-file-name="deepcut.py" pinned="false" current-in-tab="false">
         <entry file="file:///usr/local/lib/python3.6/site-packages/deepcut/deepcut.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
+            <state relative-caret-position="195">
               <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
@@ -59,11 +62,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train_word2vec_model.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="train_word2vec_model.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/word2vec/train_word2vec_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="150">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pre_trainset.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/preprocess/pre_trainset.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="451">
+              <caret line="34" column="72" lean-forward="false" selection-start-line="34" selection-start-column="66" selection-end-line="34" selection-end-column="72" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="neuron_network.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/neuron/neuron_network.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-206">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -122,7 +147,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="827" />
@@ -153,14 +178,24 @@
             <path>
               <item name="Seniorproject" type="b2602c69:ProjectViewProjectNode" />
               <item name="Seniorproject" type="462c0819:PsiDirectoryNode" />
-              <item name="word2vec" type="462c0819:PsiDirectoryNode" />
+              <item name="neuron" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Seniorproject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Seniorproject" type="462c0819:PsiDirectoryNode" />
+              <item name="preprocess" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Seniorproject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Seniorproject" type="462c0819:PsiDirectoryNode" />
+              <item name="Summarize_ENG" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -301,10 +336,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="827" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24305555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24305555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.50555557" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32705882" sideWeight="0.49444443" order="2" side_tool="false" content_ui="tabs" />
@@ -340,20 +374,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/word2vec/test_word2vec.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="10" column="53" lean-forward="false" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Deepcut/deepcut_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="21" column="38" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/word2vec/train_word2vec_model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -484,13 +504,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Deepcut/newsfile/dailynews/news_economics.txt" />
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.2/python_stubs/-1625016946/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1498">
-          <caret line="5073" column="8" lean-forward="false" selection-start-line="5073" selection-start-column="8" selection-end-line="5073" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.2/python_stubs/-1625016946/builtins.py" />
     <entry file="file://$PROJECT_DIR$/word2vec/tmp.text" />
     <entry file="file://$PROJECT_DIR$/word2vec/word2vec_test.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -525,10 +539,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/word2vec/process_wiki.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
+        <state relative-caret-position="690">
           <caret line="53" column="18" lean-forward="false" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
           <folding>
             <element signature="e#98#109#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/site-packages/deepcut/deepcut.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -541,20 +565,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.6/site-packages/deepcut/deepcut.py">
+    <entry file="file://$PROJECT_DIR$/word2vec/train_word2vec_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+        <state relative-caret-position="150">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocess/pre_trainset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="34" column="72" lean-forward="false" selection-start-line="34" selection-start-column="66" selection-end-line="34" selection-end-column="72" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/word2vec/train_word2vec_model.py">
+    <entry file="file://$PROJECT_DIR$/neuron/neuron_network.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="-206">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
