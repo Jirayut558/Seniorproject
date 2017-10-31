@@ -8,7 +8,23 @@ import functools
 import csv
 from pythainlp.tag import pos_tag
 from pythainlp.tokenize import sent_tokenize
-from PyDictionary import PyDictionary
+import gensim
+
+model_path = "/Users/jirayutk/Project/Seniorproject/model/economic2.th.model"
+model = gensim.models.Word2Vec.load(model_path)
+
+'''
+Word to Vector
+input : word
+output : vector of float [100 features]
+'''
+def word_to_vec(word):
+    try:
+        vec = (model.wv[word])
+        return vec
+    except:
+        return [0]*10
+
 '''
 input : title , body
 output : list(title) , list(body)
@@ -34,7 +50,18 @@ input : article
 output : list of phrase
 '''
 def phrasecut(article):
-    return (sent_tokenize(article, engine='whitespace'))
+    list_in = sent_tokenize(article, engine='whitespace')
+    list_out = []
+    i=0
+    while i < len(list_in):
+        if list_in[i].isdigit():
+            list_out.append(list_in[i]+list_in[i+1])
+            i+=2
+        else:
+            list_out.append(list_in[i])
+            i+=1
+    return list_out
+
 
 #input : title(cut),word(cut)
 #output : 1 pass, 0 fail
@@ -96,9 +123,13 @@ def date_check(word):
 def pos_word(word):
     pos = pos_tag(word, engine='old')
     return pos[0][1]
+
+
+
+
 if __name__ == '__main__':
     filein = codecs.open("input_article.txt","r",encoding='utf8')
-    fileout = codecs.open("output_article.txt","a",encoding='utf8')
+    fileout = codecs.open("output_article.txt","w",encoding='utf8')
     input = filein.read()
 
     fileout.writelines("Word cut\n"+str(wordcut(input))+"\n\nPhrase cut\n"+str(phrasecut(input)))

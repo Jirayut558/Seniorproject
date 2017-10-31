@@ -6,12 +6,13 @@ import logging
 import os.path
 import sys
 import re
+import codecs
 import deepcut
 from gensim.corpora import WikiCorpus
 
-tmp_path = "/Users/jirayutk./Project/projectfile/word2vec/tmp.text"
-news_path= "/Users/jirayutk./Project/projectfile/newsfile/dailynews/news_economics.txt"
-output_path = "/Users/jirayutk./Project/projectfile/word2vec/economic.th.text"
+tmp_path = "/Users/jirayutk/Project/Seniorproject/word2vec/tmp.text"
+news_path= "/Users/jirayutk/Project/Seniorproject/word2vec/news_economics.txt"
+output_path = "/Users/jirayutk/Project/Seniorproject/word2vec/economic.th.text"
 
 def read_news_fromfile(path_file):
     global tmp_path
@@ -59,8 +60,6 @@ def preprocess():
             logger.info("Saved " + str(i) + " articles")
     output.close()
     logger.info("Finished Saved " + str(i) + " articles")
-def main():
-    preprocess()
 
 if __name__ == '__main__':
-    main()
+    preprocess()

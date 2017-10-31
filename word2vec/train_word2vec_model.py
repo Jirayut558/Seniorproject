@@ -11,9 +11,8 @@ from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
  
 if __name__ == '__main__':
-    inp = "/Users/jirayutk./Project/projectfile/word2vec/education.th.text"
-    outp1 = "/Users/jirayutk./Project/projectfile/word2vec/education.th.model"
-    outp2 = "/Users/jirayutk./Project/projectfile/word2vec/education.th.vector"
+    inp = "/Users/jirayutk/Project/Seniorproject/word2vec/economic.th.text"
+    outp1 = "/Users/jirayutk/Project/Seniorproject/word2vec/economic2.th.model"
 
     program = os.path.basename(sys.argv[0])
     logger = logging.getLogger(program)
@@ -22,11 +21,9 @@ if __name__ == '__main__':
     logging.root.setLevel(level=logging.INFO)
     logger.info("running %s" % ' '.join(sys.argv))
 
-    model = Word2Vec(LineSentence(inp), size=400, window=5, min_count=5,
-            workers=multiprocessing.cpu_count())
+    model = Word2Vec(LineSentence(inp), size=10, window=10, min_count=1,workers=multiprocessing.cpu_count())
  
     # trim unneeded model memory = use(much) less RAM
     #model.init_sims(replace=True)
     model.save(outp1)
-    model.wv.save_word2vec_format(outp2, binary=False)
 

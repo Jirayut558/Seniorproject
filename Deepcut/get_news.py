@@ -3,12 +3,13 @@ import urllib.request
 import json
 from bs4 import BeautifulSoup
 import os
+import codecs
 
 url_dailynews = "https://www.dailynews.co.th/sports?page="
 url_kaosod = "https://www.khaosod.co.th/sports/page/"
 path_file = "/Users/jirayutk./Project/projectfile/newsfile/"
 
-url_matichon = "https://www.matichon.co.th/category/lifestyle/page/"
+url_matichon = "https://www.matichon.co.th/category/economy/page/"
 
 # ------------------------------------------------DailyNews-------------------------------------------
 def get_dailynews_url(url_page):
@@ -112,7 +113,7 @@ def get_kaosod_news(url_link):
 def write_file_kaosod(type,title,body):
     data = {"type": str(type).strip(), "title": str(title).strip(),"body": str(body).strip()}
     json_data = json.dumps(data)
-    file = open(path_file + "kaosod/news_sports.txt", 'a')
+    file = open("/Users/jirayutk/Project/Seniorproject/Deepcut/newsfile/news_economy.txt", 'a')
     file.writelines(json_data + "\n")
     file.close()
 def load_kaosod():
@@ -131,7 +132,7 @@ def get_urls_matichon(url_page):
         print(link)
         get_kaosod_news(link)
 def load_matichon():
-    for i in range(110,200):
+    for i in range(210,400):
         print (str(i))
         get_urls_matichon(url_matichon+str(i))
 #------------------------------------------------matichon----------------------------------------
@@ -141,12 +142,13 @@ def load_matichon():
 #--------------------------------------------Read News file -----------------------------------
 def read_news(path_file):
     file = open(path_file,'r')
+    outfile = codecs.open("news.txt",'w',encoding='utf-8')
     i=0
     for line in file.readlines():
-        if i==0:
+        if i<=20:
             data = json.loads(line)
-            print(data)
-            i+=1
+            outfile.write(data['title']+"\n"+data['body']+"\n\n")
+        i+=1
 
 def sum_news(folderpath):
     listfile = os.listdir(folderpath)
@@ -158,11 +160,11 @@ def sum_news(folderpath):
 
 def main():
     try:
-        #read_news("/Users/jirayutk./Project/projectfile/newsfile/dailynews/news_agriculture.txt")
+        #read_news("/Users/jirayutk/Project/Seniorproject/newsfile/matichon/news_economy.txt")
         #load_kaosod()
         #load_matichon()
         #load_dailynews_tofile()
-        sum_news("/Users/jirayutk./Project/projectfile/newsfile/matichon")
+        sum_news("/Users/jirayutk/Project/Seniorproject/newsfile/dailynews")
     except Exception as e:
         print(e)
 if __name__ == '__main__':

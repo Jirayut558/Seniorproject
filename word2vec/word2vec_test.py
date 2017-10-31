@@ -9,5 +9,6 @@ print(aa)
 '''
 
 import gensim
-model = gensim.models.Word2Vec.load("/Users/jirayutk./Project/projectfile/word2vec/economic.th.text.model")
-print(model.wv['เงิน','สัตว์'])
+model = gensim.models.Word2Vec.load("education.th.model")
+vec = (model.wv['ควย'])
+print(vec,vec[0])

@@ -1,0 +1,6 @@
+*.txt
+*.text
+*.csv
+/model
+/newsfile
+/preprocess/data
